@@ -1,0 +1,231 @@
+:root {
+    --primary-blue: #2563eb;
+    --primary-blue-hover: #1d4ed8;
+    --accent-yellow: #fbbf24;
+    --accent-green: #10b981;
+    --gradient-bg: linear-gradient(135deg, #2563eb 0%, #10b981 50%, #fbbf24 100%);
+    --card-shadow: 0 10px 40px rgba(37, 99, 235, 0.15);
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-light: #f8fafc; /* Fondo claro para elementos */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    /* overflow-x: hidden; es esencial para el fondo animado */
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; 
+    /* El fondo animado */
+    background: var(--gradient-bg);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Patrón de fondo minimalista para la sensación de profundidad */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1; 
+}
+
+/* Estilo para el contenedor principal para que se vea sobre el fondo */
+#content {
+    /* Fondo sólido debajo del contenido para separar el degradado del body */
+    background-color: var(--bg-light); 
+    min-height: calc(100vh - 56px); /* Altura mínima restando un posible footer */
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de Bienvenida */
+.welcome-section {
+    padding: 3rem 0 2rem 0;
+    border-bottom: 1px solid #e2e8f0; /* Separador sutil */
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Título principal con degradado */
+.welcome-section h1 {
+    font-weight: 800 !important;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+.welcome-section .lead {
+    color: var(--text-muted) !important;
+}
+
+/* Icono de Engranajes */
+.welcome-section .fa-cogs {
+    color: var(--primary-blue) !important; /* Asegurar el azul primario */
+}
+.welcome-section .bg-white {
+    border-radius: 50%; /* Icono circular */
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
+    transition: all 0.3s ease;
+}
+.welcome-section .bg-white:hover {
+     transform: scale(1.05) rotate(5deg);
+}
+
+/* --- Estadísticas Rápidas --- */
+.dashboard-card {
+    border: none;
+    border-radius: 12px; /* Bordes redondeados modernos */
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+.dashboard-card .card-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+}
+
+.dashboard-card .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.dashboard-card small {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* --- Acciones Rápidas (Botones) --- */
+.card-header {
+    background-color: #ffffff !important; /* Fondo blanco para separar del contenido */
+    border-bottom: 1px solid #e2e8f0;
+    border-radius: 12px 12px 0 0;
+}
+.card-header .card-title {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Estilo para los botones de acción rápida */
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-warning,
+.btn-outline-info {
+    border-radius: 12px;
+    font-weight: 600;
+    border-width: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-outline-primary:hover { 
+    background-color: var(--primary-blue-hover);
+    color: white !important; 
+    border-color: var(--primary-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-outline-success:hover { 
+    background-color: var(--accent-green);
+    color: white !important; 
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-outline-warning:hover { 
+    background-color: var(--accent-yellow);
+    color: var(--text-dark) !important; /* Usar texto oscuro sobre el amarillo */
+    border-color: var(--accent-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(251, 191, 36, 0.3);
+}
+
+.btn-outline-info:hover { 
+    background-color: #0b67e7;
+    color: white !important; 
+    border-color: #0b67e7;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(13, 110, 253, 0.3);
+}
+
+/* Botón flotante */
+.scroll-to-top {
+    background-color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
+    color: white !important;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+    transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    background-color: var(--accent-green) !important;
+    border-color: var(--accent-green) !important;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.5);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container-fluid > .welcome-section,
+.container-fluid > .row {
+    opacity: 0;
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+.container-fluid > .welcome-section { animation-delay: 0.1s; }
+.container-fluid > .row:nth-child(2) { animation-delay: 0.3s; } /* Estadísticas */
+.container-fluid > .row:nth-child(3) { animation-delay: 0.5s; } /* Acciones */

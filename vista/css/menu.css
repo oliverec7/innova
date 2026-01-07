@@ -1,0 +1,121 @@
+/* Variables y Reseteo - ¡Fundamental para consistencia! */
+:root {
+    --primary-blue: #2563eb;
+    --primary-blue-hover: #1d4ed8;
+    --accent-yellow: #fbbf24;
+    --accent-green: #10b981;
+    --gradient-bg: linear-gradient(135deg, #2563eb 0%, #10b981 50%, #fbbf24 100%);
+    --card-shadow: 0 10px 40px rgba(37, 99, 235, 0.15);
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    /* Asume que 'Poppins' se ha cargado (ej. desde Google Fonts) */
+    font-family: 'Poppins', sans-serif; 
+    background: var(--gradient-bg);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+    /* Usamos un color de fondo fijo o blanco si el sidebar ocupa el 100% de la altura */
+    background-color: #f8fafc; /* Fondo interior claro para el contenido */
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.menu-moderno .navbar-brand {
+    padding: 20px 0;
+    /* Efecto de zoom sutil al pasar el mouse sobre el logo */
+    transition: transform 0.3s ease;
+}
+.menu-moderno .navbar-brand:hover {
+    transform: scale(1.02);
+}
+
+/* Separador */
+.menu-moderno .sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    margin: 15px 0;
+}
+
+.menu-moderno .nav-link {
+    color: var(--text-color);
+    padding: 12px 25px;
+    border-radius: 0; 
+    font-weight: 500;
+    
+    /* === TRANSICIÓN CLAVE PARA EL MOVIMIENTO === */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; /* Necesario para el efecto 'before' */
+    overflow: hidden; /* Oculta el efecto de brillo inicial */
+}
+
+/* Iconos de menú */
+.menu-moderno .nav-link i {
+    margin-right: 15px;
+    font-size: 1.1rem;
+    color: inherit; 
+    transition: all 0.3s ease;
+}
+
+/* Efecto de Brillo/Sombra en Hover (minimalista) */
+.menu-moderno .nav-link:hover {
+    background-color: var(--gradient-bg);
+    color: white;
+    border-radius: 8px;
+    transform: translateY(-2px); /* Efecto de elevación sutil */
+    /* fondo del texto */
+    background: linear-gradient(var(--accent-yellow), var(--accent-green));
+}
+
+/* Botón de Toggle (Plegado/Desplegado) */
+.menu-moderno #sidebarToggle {
+    background-color: rgba(255, 255, 255, 0.15); 
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    margin: 15px;
+    transition: all 0.3s ease;
+}
+
+.menu-moderno #sidebarToggle:hover {
+    background-color: var(--accent-yellow);
+    transform: rotate(90deg); /* Animación de rotación moderna */
+}
+
+/* Estilo para el modo colapsado/plegado (Responsivo) */
+
+.menu-moderno.toggled .nav-link {
+    padding: 12px 10px; 
+}
+
+.menu-moderno.toggled .nav-link span {
+    display: none; 
+}
+
+.menu-moderno.toggled .nav-link i {
+    margin-right: 0;
+    /* Zoom sutil en modo colapsado para que el icono destaque */
+    font-size: 1.25rem; 
+}
+
+.menu-moderno.toggled .nav-link:hover {
+    transform: scale(1.1); /* Zoom al icono en hover colapsado */
+    transform-origin: center;
+}
